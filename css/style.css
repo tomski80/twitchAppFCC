@@ -1,0 +1,54 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.stream-box {
+    background-color: #f2efe8;
+    border-radius: 10px;
+    margin: 3px;
+    min-height: 100px;
+}
+
+.box-title {
+    background-color: #c2d4d8;
+    border-radius: 10px;
+    margin: 3px;
+    min-height: 100px;
+}
+
+.stream-name {
+    font-size: 2em;
+    margin: 10px;
+    color: #bbb6ad;
+}
+
+.stream-status {
+    font-size : 0.4em;
+    margin: 0;
+    padding: 0;
+}
+
+.stream-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    position: relative;
+    top: 10%;
+    left: 20px;
+}
+
+.streaming {
+    color: black;
+}
+
+a {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+input {
+    border-radius: 5px;
+    border: none;
+    margin: 20px;
+}
