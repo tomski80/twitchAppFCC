@@ -16,17 +16,32 @@
         </header>
 
         <main>   
-            <div class='container-fill'>
+            <div class='container'>
                 <div class='row'>
                     <div class='col'>
                     </div>
                     <div class='col-md-10 col-lg-6'>
-                        <div class='row box-title'>
-                            <div class='col-4'></div>
-                            <div class='col'>
-                                <input type='text' placeholder="search">
+                        <div class=' box-title'>
+                            <div class='row'>
+                                <div class='col-2'>
+                                    <img class='img-small' src='/images/searchIcon.png'>
+                                </div>
+                                <div class='col-8'>
+                                    <input id='search-input' type='text' placeholder="search">
+                                </div>
+                                <div class='col-1'>
+                                </div>
                             </div>
-                            <div class='col-4'>
+                            <div class='row'>
+                                <div class='col-md-1 col-sm'>
+                                </div>
+                                <div class='col-md-10 col-sm-12 center'>
+                                    <button id='btn-all' class='btn-custom btn-current'>All</button>
+                                    <button id='btn-online' class='btn-custom'>Online</button>
+                                    <button id='btn-offline' class='btn-custom'>Offline</button>
+                                </div>
+                                <div class='col-md-1 col-sm'>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -35,6 +50,8 @@
                 </div>
             </div>
             <div class='container' id='result'>
+
+                
             <script id='content-row' type='text/x-handlebars-template'>                
                 {{#each this}}
                 <div class='row'>
@@ -49,7 +66,7 @@
                             <div class='col'>
                                 <div class='stream-name {{class}}'>
                                     {{!--if link exist then add 'a' tag --}}
-                                    <h3>{{#if link}}<a href={{link}}>{{/if}}{{name}}{{#if link}}</a>{{/if}}</h3>
+                                    <h3>{{#if link}}<a href={{link}} target='_blank'>{{/if}}{{name}}{{#if link}}</a>{{/if}}</h3>
                                     <p class='stream-status'>{{status}}</p></div>
                             </div>
                         </div>

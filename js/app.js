@@ -2,20 +2,22 @@
 
 $(function() {
 
-    function renderDOM(template){    
-        var html = template(streamInfoCollection);
+    function renderDOM(streamsCollection){    
+        var html = theTemplate(streamsCollection);
         $('#result').html(html);
     }
 
     var theTemplateScript = $('#content-row').html();
     var theTemplate = Handlebars.compile(theTemplateScript);
 
-
-
     var streamNames = ['streamerhouse','freecodecamp', 'dieserpan', 
             'gaming_artist', 'cretetion', 'storbeck', 
             'habathcx','RobotCaleb', 'noobs2ninjas'],
-        streamInfoCollection = []; 
+        streamInfoCollection = [],
+        streamsOnline = [],
+        streamsOffline = [],
+        streamsSearchedFor = [];
+
 
     $.ajaxSetup({ 
         headers: {
@@ -45,7 +47,53 @@ $(function() {
 
                     streamInfoCollection.push(streamInfo);
                 }
-                renderDOM(theTemplate);
             });
     });
+
+    $(document).ajaxStop(function() {
+        renderDOM(streamInfoCollection);
+
+        streamsOnline = streamInfoCollection.filter( function(elem){
+            return elem.status;
+        });
+
+        streamsOffline = streamInfoCollection.filter( function(elem){
+            return !elem.status;
+        });
+
+    });
+
+
+    $('#btn-all').on('click', function(){
+        $('#btn-all').addClass('btn-current');
+        $('#btn-online').removeClass('btn-current');
+        $('#btn-offline').removeClass('btn-current');
+        renderDOM(streamInfoCollection);
+    });
+
+    $('#btn-online').on('click', function(){
+        $('#btn-online').addClass('btn-current');
+        $('#btn-all').removeClass('btn-current');
+        $('#btn-offline').removeClass('btn-current');
+        renderDOM(streamsOnline);
+    });
+
+    $('#btn-offline').on('click', function(){
+        $('#btn-offline').addClass('btn-current');
+        $('#btn-all').removeClass('btn-current');
+        $('#btn-online').removeClass('btn-current');
+        renderDOM(streamsOffline);
+    });
+    
+    $('#search-input').keyup( function(){
+        var inputVal = $('#search-input').val();
+        streamsSearchedFor = streamInfoCollection.filter( function(stream) {
+            var len = inputVal.length;
+            return stream.name.slice(0,len).toUpperCase() === inputVal.toUpperCase();
+        });
+
+        renderDOM(streamsSearchedFor);
+    });
+
+    
 });

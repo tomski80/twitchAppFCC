@@ -1,5 +1,6 @@
 body {
     font-family: 'Lato', sans-serif;
+    background-color: rgb(197, 191, 180);
 }
 
 .stream-box {
@@ -48,7 +49,57 @@ a {
 }
 
 input {
-    border-radius: 5px;
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
     border: none;
-    margin: 20px;
+    padding: 10px;
+    margin: 20px 20px;
+}
+
+.btn-custom {
+    height: 50px;
+    border: none;
+    margin: 5px 5px 10px 5px;
+    padding: 0 10px;
+    border-radius: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.btn-custom:active {
+    outline: none;
+    border: none;
+}
+
+.btn-current {
+    height: 50px;
+    border: 2px solid #83a6ad;;
+    outline-style: none;
+    margin: 5px 5px 10px 5px;
+    border-radius: 20px;
+    font-size: 1.5em;
+    background-color: #c2d4d8;
+}
+
+.btn-current:focus {
+    outline: 0;
+    outline-style: none;
+}
+
+
+
+.img-small {
+    height: 35px;
+    width: 35px;
+    opacity: 0.5;
+    position: relative;
+    left: 75%;
+    top: 25px;
+}
+
+.center {
+    align-content: center;
+    justify-content: center;
+    text-align: center;
 }
