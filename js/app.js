@@ -51,6 +51,16 @@ $(function() {
     });
 
     $(document).ajaxStop(function() {
+
+        streamInfoCollection.sort( function(a,b){
+            if( a.name < b.name) {
+                return -1;
+            }
+            if( b.name < a.name){
+                return 1;
+            }
+            return 0;
+        });
         renderDOM(streamInfoCollection);
 
         streamsOnline = streamInfoCollection.filter( function(elem){
@@ -63,25 +73,33 @@ $(function() {
 
     });
 
+    var btnAll = $('#btn-all'),
+        btnOnline = $('#btn-online'),
+        btnOffline = $('#btn-offline');
 
-    $('#btn-all').on('click', function(){
-        $('#btn-all').addClass('btn-current');
-        $('#btn-online').removeClass('btn-current');
-        $('#btn-offline').removeClass('btn-current');
+    function toggleCurrentClass(btn){
+        btnAll.removeClass('btn-current');
+        btnOnline.removeClass('btn-current');
+        btnOffline.removeClass('btn-current');
+    
+        btn.addClass('btn-current');
+    }
+
+    btnAll.on('click', function(){
+        $('#search-input').val('');
+        toggleCurrentClass(btnAll);
         renderDOM(streamInfoCollection);
     });
 
-    $('#btn-online').on('click', function(){
-        $('#btn-online').addClass('btn-current');
-        $('#btn-all').removeClass('btn-current');
-        $('#btn-offline').removeClass('btn-current');
+    btnOnline.on('click', function(){
+        $('#search-input').val('');
+        toggleCurrentClass(btnOnline);
         renderDOM(streamsOnline);
     });
 
-    $('#btn-offline').on('click', function(){
-        $('#btn-offline').addClass('btn-current');
-        $('#btn-all').removeClass('btn-current');
-        $('#btn-online').removeClass('btn-current');
+    btnOffline.on('click', function(){
+        $('#search-input').val('');
+        toggleCurrentClass(btnOffline);
         renderDOM(streamsOffline);
     });
     
@@ -91,7 +109,6 @@ $(function() {
             var len = inputVal.length;
             return stream.name.slice(0,len).toUpperCase() === inputVal.toUpperCase();
         });
-
         renderDOM(streamsSearchedFor);
     });
 
